@@ -3,8 +3,7 @@
 ipfs init
 ipfs daemon &
 waitForIpfs
-ipfs pin remote service add origin $ENDPOINT $ACCESS_TOKEN
-CID=$(ipfs add -r -q --cid-version 1 $UPLOAD_PATH | tail -1)
-ipfs pin remote add --service=origin --name=$NAME $CID
+ipfs pin remote service add web3.storage https://api.web3.storage/ $ACCESS_TOKEN
+ipfs pin remote add --service=web3.storage --name=aelin-dapp $CID
 
 echo "::set-output name=cid::$CID"
