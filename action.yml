@@ -1,23 +1,27 @@
-name: 'Web3.Storage Pinning'
-description: 'Pin your CID to a Web3.Storage'
-author: 'Alexander Schau <alexander@schau.email>'
+name: 'Web3 Storage Pinning GitHub Action'
+description: 'Pin your ipfs cid to a Web3.Storage'
+author: 'Saeta <saetaeth@proton.me>'
 branding:
   icon: 'box'
   color: 'gray-dark'
 inputs:
   cid:
-    description: 'CID v1 to be pinned on Web3.Storage'
+    description: 'Ipfs cid to be pinned on Web3.Storage'
     required: true
-  access_token:
-    description: 'Access Token for API Endpoint'
+  pin_name:
+    description: 'Name of pin'
+    required: true
+  web3_storage_api_token:
+    description: 'API Token for Web3.Storage'
     required: true
 outputs:
   cid:
-    description: 'IPFS CID of the pinned file/directory'
+    description: 'Ipfs cid of the pinned file/directory'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
+    PIN_NAME: ${{ inputs.pin_name }} 
     CID: ${{ inputs.cid }}
-    ACCESS_TOKEN: ${{ inputs.access_token }}
+    WEB3_STORAGE_API_TOKEN: ${{ inputs.web3_storage_api_token }}
   
